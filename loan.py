@@ -40,7 +40,7 @@ def make_prediction():
     else:
         pred = "Loan Rejected"
 
-    return {"Loan Staus:": pred}
+    return {"Loan Status": pred}
 
 if __name__ =="__main__":
     app.run(debug=True)

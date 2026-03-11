@@ -10,5 +10,5 @@ def home():
 def about():
     return "This is page about us"
 
-if name =="__main__":
+if __name__ == "__main__":
     app.run(debug=True) # debug=True -> auto reload the server when code changes
