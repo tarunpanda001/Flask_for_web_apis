@@ -6,7 +6,7 @@ import pytest
 # client -> act as a server to test the api endpoints
 @pytest.fixture
 def client():
-    return app.test_client()
+    return app.test_client()  
 
 def test_home(client: FlaskClient):
     resp = client.get("/")
