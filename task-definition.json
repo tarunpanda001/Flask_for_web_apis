@@ -1,87 +1,38 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-west-2:794038236874:task-definition/loan_app_task:1",
-    "containerDefinitions": [
+  "family": "loan_app_task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "3072",
+  "executionRoleArn": "arn:aws:iam::794038236874:role/ecsTaskExecutionRole",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "containerDefinitions": [
+    {
+      "name": "loan_app_container",
+      "image": "794038236874.dkr.ecr.us-west-2.amazonaws.com/flask_loan_app:latest",
+      "essential": true,
+      "portMappings": [
         {
-            "name": "loan_app_container",
-            "image": "794038236874.dkr.ecr.us-west-2.amazonaws.com/flask_loan_app:latest",
-            "cpu": 0,
-            "portMappings": [
-                {
-                    "name": "loan_app_container-80-tcp",
-                    "containerPort": 80,
-                    "hostPort": 80,
-                    "protocol": "tcp",
-                    "appProtocol": "http"
-                }
-            ],
-            "essential": true,
-            "environment": [],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "ulimits": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "/ecs/loan_app_task",
-                    "awslogs-create-group": "true",
-                    "awslogs-region": "us-west-2",
-                    "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
-            },
-            "systemControls": []
+          "containerPort": 5000,
+          "hostPort": 5000,
+          "protocol": "tcp"
         }
-    ],
-    "family": "loan_app_task",
-    "executionRoleArn": "arn:aws:iam::794038236874:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
-    "revision": 1,
-    "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+      ],
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/loan_app_task",
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs"
         }
-    ],
-    "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "MANAGED_INSTANCES",
-        "FARGATE"
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "1024",
-    "memory": "3072",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
-    "registeredAt": "2026-03-14T13:21:57.982Z",
-    "registeredBy": "arn:aws:iam::794038236874:user/devops_user_5761815_153417",
-    "enableFaultInjection": false,
-    "tags": []
+      }
+    }
+  ],
+  "volumes": []
 }
